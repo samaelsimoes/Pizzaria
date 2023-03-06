@@ -14,6 +14,8 @@ import { CreateOrderController } from './controllers/order/CreateOrderController
 
 import uploadConfig from './config/multer';
 import { RemoveOrderController } from './controllers/order/RemoveOrderController';
+import { AddItemController } from './controllers/order/AddItemController';
+import { RemoveItemController } from './controllers/order/RemoveItemController';
 
 const router = Router();
 const upload = multer(uploadConfig.upload("./tmp"));
@@ -37,5 +39,9 @@ router.get('/category/listProduct', isAuthenticated, new ListByCategoryControlle
 // -- Rotas Orders
 router.post('/order', isAuthenticated, new CreateOrderController().handle);
 router.delete('/order', isAuthenticated, new RemoveOrderController().handle);
+
+router.post('/order/add', isAuthenticated, new AddItemController().handle);
+router.delete('/order/removeItem', isAuthenticated, new RemoveItemController().handle);
+
 
 export { router };
