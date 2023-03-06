@@ -32,7 +32,7 @@ export function isAuthenticated(
 
     return next();
 
-  }catch(err){
+  }catch(err) {
     return res.status(401).end();
   }
 }
