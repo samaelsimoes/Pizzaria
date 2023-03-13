@@ -3,7 +3,6 @@ import multer from 'multer';
 
 import { CreateUserController } from './controllers/user/CreateUserController';
 import { AuthUserController } from './controllers/user/AuthUserController';
-import { DetailUserController } from './controllers/user/DetailUserController';
 
 import { isAuthenticated } from './middlewares/isAuthenticated';
 import { CreateCategoryController } from './controllers/category/CreateCategoryController';
@@ -16,6 +15,11 @@ import uploadConfig from './config/multer';
 import { RemoveOrderController } from './controllers/order/RemoveOrderController';
 import { AddItemController } from './controllers/order/AddItemController';
 import { RemoveItemController } from './controllers/order/RemoveItemController';
+import { SendOrderController } from './controllers/order/SendOrderController';
+import { ListOrdersController } from './controllers/order/ListOrdersController';
+import { DetailuserController } from './controllers/user/DetailUserController';
+import { DetailOrderController } from './controllers/order/DetailOrderController';
+import { FinishOrderController } from './controllers/order/FinishOrderController';
 
 const router = Router();
 const upload = multer(uploadConfig.upload("./tmp"));
@@ -26,7 +30,7 @@ router.post('/users', new CreateUserController().handle);
 router.post('/session', new AuthUserController().handle);
 
 // Busca os detalhes do usuario + token obrigatorio
-router.get('/userInfo', isAuthenticated, new DetailUserController().handle);
+router.get('/userInfo', isAuthenticated, new DetailuserController().handle);
 
 // -- Rotas de categoria
 router.post('/category', isAuthenticated, new CreateCategoryController().handle);
@@ -43,5 +47,12 @@ router.delete('/order', isAuthenticated, new RemoveOrderController().handle);
 router.post('/order/add', isAuthenticated, new AddItemController().handle);
 router.delete('/order/removeItem', isAuthenticated, new RemoveItemController().handle);
 
+// -- Rotas de SendOrder
+router.put('/order/send', isAuthenticated, new SendOrderController().handle);
+
+router.get('/orders', isAuthenticated, new ListOrdersController().handle);
+router.get('/order/detail', isAuthenticated, new DetailOrderController().handle);
+
+router.put('/order/finish', isAuthenticated, new FinishOrderController().handle);
 
 export { router };
