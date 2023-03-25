@@ -19,35 +19,36 @@ export default function SignUp() {
       <Image src={logoImg} alt="Logo Sujeito Pizzaria" />
 
       <div className={styles.login}>
-
-        <h1> Criando sua conta </h1>
+        <h1>Criando sua conta</h1>
 
         <form>
-            <Input
-                placeholder="Digite seu nome "
-                type="text"
-            />
-            <Input
-                placeholder="Nome "
-                type="text"
-            />
+          <Input
+            placeholder="Digite seu nome"
+            type="text"
+          />
 
-            <Input
-                placeholder="Sua senha"
-                type="password"
-            />
+          <Input
+            placeholder="Digite seu email"
+            type="text"
+          />
 
-            <Button
+          <Input
+            placeholder="Sua senha"
+            type="password"
+          />
+          
+          <Button
             type="submit"
             loading={false}
-            >
-            Acessar
-            </Button>
+          >
+            Cadastrar
+          </Button>
         </form>
 
         <Link href="/">
-          <a className={styles.text}>Já possui uma conta? Faça Login!</a>
+           <a className={styles.text}>Já possui uma conta? Faça login!</a>
         </Link>
+
       </div>
     </div>
     </>
